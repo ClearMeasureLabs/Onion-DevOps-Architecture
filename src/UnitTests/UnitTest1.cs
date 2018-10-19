@@ -1,13 +1,13 @@
 using System;
 using Core;
-using Xunit;
+using NUnit.Framework;
 
 namespace UnitTests
 {
-    public class UnitTest1
+    public class Class1Tests
     {
-        [Fact]
-        public void Test1()
+        [Test]
+        public void ShouldCreateClass()
         {
             var firstClass = new Class1();
             Assert.True(firstClass != null);
