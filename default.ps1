@@ -4,8 +4,7 @@ properties {
     $projectName = "OnionDevOpsArchitecture"
     $base_dir = resolve-path .\
     $source_dir = "$base_dir\src"
-    $unitTestAssembly = "ClearMeasure.OnionDevOpsArchitecture.UnitTests.dll"
-    $testresults_dir = "$base_dir\TestResults"
+    $unitTestProjectPath = "$source_dir\UnitTests\UnitTests.csproj"
 	$testCopyIgnorePath = ".vs"
 	$projectConfig = $env:Configuration
     $version = $env:Version
@@ -25,7 +24,8 @@ task Init {
     Write-Host("##[section]Starting: Build task 'Init'")
     delete_file $package_file
     rd $build_dir -recurse -force  -ErrorAction Ignore
-    rd $testresults_dir -recurse -force -ErrorAction Ignore
+	dotnet clean $source_dir\$projectName.sln
+	dotnet restore $source_dir\$projectName.sln --interactive
    
     create_directory $test_dir
     create_directory $build_dir
@@ -37,9 +37,10 @@ task Init {
 
 task Compile -depends Init {
     Write-Host("##[section]Starting: Build task 'Compile'")
-    exec {
-        & 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\msbuild.exe' /t:Clean`;Rebuild /v:m /maxcpucount:1 /nologo /p:Configuration=$projectConfig $source_dir\$projectName.sln
-    }
+    dotnet build $source_dir\$projectName.sln
+	#exec {
+     #   & 'C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\msbuild.exe' /t:Clean`;Rebuild /v:m /maxcpucount:1 /nologo /p:Configuration=$projectConfig $source_dir\$projectName.sln
+    #}
 
     #
 
@@ -49,10 +50,9 @@ task Compile -depends Init {
 
 task Test -depends Compile {
     Write-Host("##[section]Starting: Build task 'Test'")
-    copy_all_assemblies_for_test $test_dir
-    exec {
-        & $nunitPath\nunit3-console.exe $test_dir\$unitTestAssembly --workers=1 --noheader --result="$build_dir\TestResult.xml"`;format=nunit2
-    }
+	
+	dotnet test $unitTestProjectPath --logger:trx --results-directory $build_dir --no-build
+    
     Write-Host("##[section]Finishing: Build task 'Test'")
 } 
 
