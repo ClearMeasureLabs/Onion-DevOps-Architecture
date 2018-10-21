@@ -8,7 +8,8 @@
     <AssemblyName>ClearMeasure.OnionDevOpsArchitecture.UnitTests</AssemblyName>
 
     <RootNamespace>ClearMeasure.OnionDevOpsArchitecture.UnitTests</RootNamespace>
-    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <Version>9.9.9</Version>
   </PropertyGroup>
 
   <ItemGroup>
