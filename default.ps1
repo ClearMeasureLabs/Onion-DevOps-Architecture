@@ -12,7 +12,7 @@ properties {
     $build_dir = "$base_dir\build"
 	$test_dir = "$build_dir\test"
     
-    if ([string]::IsNullOrEmpty($version)) { $version = "1.0.0"}
+    if ([string]::IsNullOrEmpty($version)) { $version = "1.0.1"}
     if ([string]::IsNullOrEmpty($projectConfig)) {$projectConfig = "Release"}
  }
 
@@ -36,7 +36,7 @@ task Init {
 
 task Compile -depends Init {
 	exec {
-		& dotnet build $source_dir\$projectName.sln -nologo --no-restore -v $verbosity -maxcpucount --configuration $projectConfig --no-incremental --output $build_dir
+		& dotnet build $source_dir\$projectName.sln -nologo --no-restore -v $verbosity -maxcpucount --configuration $projectConfig --no-incremental --output $build_dir /p:Version=$version /p:Authors="Clear Measure" /p:Product="Onion DevOps Architecture"
 	}
 }
 
