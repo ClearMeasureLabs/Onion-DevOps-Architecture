@@ -6,7 +6,7 @@ $source_dir = "$base_dir\src"
 $unitTestProjectPath = "$source_dir\UnitTests"
 $projectConfig = $env:BuildConfiguration
 $version = $env:Version
-$verbosity = "m"
+$verbosity = "d"
 
 $build_dir = "$base_dir\build"
 $test_dir = "$build_dir\test"
