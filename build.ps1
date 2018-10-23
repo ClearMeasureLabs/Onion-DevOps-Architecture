@@ -1,24 +1,20 @@
-Framework "4.6"
+. .\BuildFunctions.ps1
 
-properties {
-    $projectName = "OnionDevOpsArchitecture"
-    $base_dir = resolve-path .\
-    $source_dir = "$base_dir\src"
-    $unitTestProjectPath = "$source_dir\UnitTests\UnitTests.csproj"
-	$projectConfig = $env:Configuration
-    $version = $env:Version
-	$verbosity = "m"
+$projectName = "OnionDevOpsArchitecture"
+$base_dir = resolve-path .\
+$source_dir = "$base_dir\src"
+$unitTestProjectPath = "$source_dir\UnitTests\UnitTests.csproj"
+$projectConfig = $env:BuildConfiguration
+$version = $env:Version
+$verbosity = "m"
 
-    $build_dir = "$base_dir\build"
-	$test_dir = "$build_dir\test"
+$build_dir = "$base_dir\build"
+$test_dir = "$build_dir\test"
     
-    if ([string]::IsNullOrEmpty($version)) { $version = "1.0.1"}
-    if ([string]::IsNullOrEmpty($projectConfig)) {$projectConfig = "Release"}
- }
-
-task default -depends Init, Compile, Test
-
-task Init {
+if ([string]::IsNullOrEmpty($version)) { $version = "1.0.1"}
+if ([string]::IsNullOrEmpty($projectConfig)) {$projectConfig = "Release"}
+ 
+Function Init {
     rd $build_dir -recurse -force  -ErrorAction Ignore
 	md $build_dir > $null
 
@@ -34,15 +30,20 @@ task Init {
     Write-Host $version
 }
 
-task Compile -depends Init {
+
+Function Compile{
 	exec {
 		& dotnet build $source_dir\$projectName.sln -nologo --no-restore -v $verbosity -maxcpucount --configuration $projectConfig --no-incremental --output $build_dir /p:Version=$version /p:Authors="Clear Measure" /p:Product="Onion DevOps Architecture"
 	}
 }
 
-task Test -depends Compile {
+Function Test{
 	exec {
 		& dotnet test $unitTestProjectPath -nologo -v $verbosity --logger:trx --results-directory $test_dir --no-build --no-restore --configuration $projectConfig
 		}
     
-}  
+}
+
+Init
+Compile
+Test

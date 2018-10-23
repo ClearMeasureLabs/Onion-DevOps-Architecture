@@ -3,12 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{A5CE4AF6-83BF-4A24-9829-2DE35FDE576C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{A5CE4AF6-83BF-4A24-9829-2DE35FDE576C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{B2EF20C1-F72E-4356-A903-A9AE419DB924}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{B2EF20C1-F72E-4356-A903-A9AE419DB924}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9C360436-729A-48BF-871F-98E7EFBD702C}"
 	ProjectSection(SolutionItems) = preProject
+		..\build.ps1 = ..\build.ps1
+		..\BuildFunctions.ps1 = ..\BuildFunctions.ps1
 		..\default.ps1 = ..\default.ps1
 		NuGet.config = NuGet.config
 	EndProjectSection

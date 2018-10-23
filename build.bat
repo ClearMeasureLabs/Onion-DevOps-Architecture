@@ -1,1 +1,1 @@
-powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "& { Import-Module '.\tools\psake-4.7.4\psake.psm1'; Invoke-psake '.\default.ps1' %1; if ($lastexitcode -ne 0) {write-host "ERROR: $lastexitcode" -fore RED; exit $lastexitcode} }" 
+powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "& { .\build.ps1; if ($lastexitcode -ne 0) {write-host "ERROR: $lastexitcode" -fore RED; exit $lastexitcode} }" 
