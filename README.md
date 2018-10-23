@@ -1,3 +1,4 @@
+[![Build status](https://clearmeasurelabs.visualstudio.com/Onion-DevOps-Architecture/_apis/build/status/Onion-DevOps-Architecture-ASP.NET%20Core-CI)](https://clearmeasurelabs.visualstudio.com/Onion-DevOps-Architecture/_build/latest?definitionId=7)
 # Introduction 
 TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
 
