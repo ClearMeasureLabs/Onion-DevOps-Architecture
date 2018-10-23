@@ -3,7 +3,7 @@
 $projectName = "OnionDevOpsArchitecture"
 $base_dir = resolve-path .\
 $source_dir = "$base_dir\src"
-$unitTestProjectPath = "$source_dir\UnitTests\UnitTests.csproj"
+$unitTestProjectPath = "$source_dir\UnitTests"
 $projectConfig = $env:BuildConfiguration
 $version = $env:Version
 $verbosity = "m"
@@ -38,10 +38,16 @@ Function Compile{
 }
 
 Function Test{
-	exec {
-		& dotnet test $unitTestProjectPath -nologo -v $verbosity --logger:trx --results-directory $test_dir --no-build --no-restore --configuration $projectConfig
+	Push-Location -Path $unitTestProjectPath
+
+	try {
+		exec {
+			& dotnet test -nologo -v $verbosity --logger:trx --results-directory $test_dir --no-build --no-restore --configuration $projectConfig
 		}
-    
+	}
+	finally {
+		Pop-Location
+	}
 }
 
 Init
