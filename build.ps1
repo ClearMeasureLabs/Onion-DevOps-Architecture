@@ -6,7 +6,7 @@ $source_dir = "$base_dir\src"
 $unitTestProjectPath = "$source_dir\UnitTests"
 $projectConfig = $env:BuildConfiguration
 $version = $env:Version
-$verbosity = "d"
+$verbosity = "n"
 
 $build_dir = "$base_dir\build"
 $test_dir = "$build_dir\test"
@@ -33,7 +33,7 @@ Function Init {
 
 Function Compile{
 	exec {
-		& dotnet build $source_dir\$projectName.sln -nologo --no-restore -v $verbosity -maxcpucount --configuration $projectConfig --no-incremental --output $build_dir /p:Version=$version /p:Authors="Clear Measure" /p:Product="Onion DevOps Architecture"
+		& dotnet build $source_dir\$projectName.sln -nologo --no-restore -v $verbosity -maxcpucount --configuration $projectConfig --no-incremental /p:Version=$version /p:Authors="Clear Measure" /p:Product="Onion DevOps Architecture"
 	}
 }
 
