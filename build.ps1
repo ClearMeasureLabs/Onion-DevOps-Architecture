@@ -60,7 +60,7 @@ Function Test{
 	}
 }
 
-Function IntegrationTests{
+Function IntegrationTest{
 	Push-Location -Path $integrationTestProjectPath
 
 	try {
@@ -80,6 +80,13 @@ Function MigrateDatabaseLocal {
 }
 
 Function MigrateDatabaseRemote{
+	$efConfig = "$source_dir\ConnectionStrings.config"
+    $injectedConnectionString = "Server=tcp:$databaseServer,1433;Initial Catalog=$databaseName;Persist Security Info=False;User ID=$databaseUser;Password=$databasePassword;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+    write-host "Using connection string: $injectedConnectionString"
+    if ( Test-Path "$efConfig" ) {
+        poke-xml $efConfig "//add[@name='Database']/@connectionString" $injectedConnectionString
+    }
+
 	exec {
 		& $aliaSql $databaseAction $databaseServer $databaseName $databaseScripts $env:DatabaseUser $env:DatabasePassword
 	}
@@ -90,12 +97,13 @@ Function PrivateBuild{
 	Compile
 	Test
 	MigrateDatabaseLocal
-	IntegrationTests
+	IntegrationTest
 }
 
 Function CIBuild{
 	Init
+	MigrateDatabaseRemote
 	Compile
 	Test
-	MigrateDatabaseRemote
+	IntegrationTest
 }
