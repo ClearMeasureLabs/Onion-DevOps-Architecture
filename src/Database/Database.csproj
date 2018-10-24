@@ -55,6 +55,7 @@
     <Content Include="scripts\Everytime\placeholder.txt" />
     <Content Include="scripts\TestData\placeholder.txt" />
     <Content Include="scripts\Update\001_AddExpenseReportTable.sql" />
+    <Content Include="scripts\Update\002_AddStatusToExpenseReport.sql" />
     <Content Include="scripts\Update\placeholder.txt" />
   </ItemGroup>
   <ItemGroup>

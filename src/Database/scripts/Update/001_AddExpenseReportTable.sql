@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[ExpenseReport]
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
-    [Number] NCHAR(10) NOT NULL, 
-    [Title] NVARCHAR(10) NULL, 
-    [Description] NVARCHAR(50) NULL
+    [Number] NVARCHAR(10) NOT NULL, 
+    [Title] NVARCHAR(200) NULL, 
+    [Description] NVARCHAR(4000) NULL
 )

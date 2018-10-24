@@ -12,10 +12,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\build.ps1 = ..\build.ps1
 		..\BuildFunctions.ps1 = ..\BuildFunctions.ps1
 		NuGet.config = NuGet.config
+		..\PrivateBuild.ps1 = ..\PrivateBuild.ps1
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{C8F83941-6035-4D6A-8F01-89892B788089}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{BE3C1210-3FB8-492E-A436-79A9B4A63B68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{44877005-31A0-49E6-8659-AEDF2AD942ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +40,14 @@ Global
 		{C8F83941-6035-4D6A-8F01-89892B788089}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8F83941-6035-4D6A-8F01-89892B788089}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8F83941-6035-4D6A-8F01-89892B788089}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE3C1210-3FB8-492E-A436-79A9B4A63B68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE3C1210-3FB8-492E-A436-79A9B4A63B68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE3C1210-3FB8-492E-A436-79A9B4A63B68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE3C1210-3FB8-492E-A436-79A9B4A63B68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44877005-31A0-49E6-8659-AEDF2AD942ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44877005-31A0-49E6-8659-AEDF2AD942ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44877005-31A0-49E6-8659-AEDF2AD942ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44877005-31A0-49E6-8659-AEDF2AD942ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

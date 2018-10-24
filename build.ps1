@@ -4,9 +4,10 @@ $projectName = "OnionDevOpsArchitecture"
 $base_dir = resolve-path .\
 $source_dir = "$base_dir\src"
 $unitTestProjectPath = "$source_dir\UnitTests"
+$integrationTestProjectPath = "$source_dir\IntegrationTests"
 $projectConfig = $env:BuildConfiguration
 $version = $env:Version
-$verbosity = "n"
+$verbosity = "m"
 
 $build_dir = "$base_dir\build"
 $test_dir = "$build_dir\test"
@@ -59,6 +60,19 @@ Function Test{
 	}
 }
 
+Function IntegrationTests{
+	Push-Location -Path $integrationTestProjectPath
+
+	try {
+		exec {
+			& dotnet test -nologo -v $verbosity --logger:trx --results-directory $test_dir --no-build --no-restore --configuration $projectConfig
+		}
+	}
+	finally {
+		Pop-Location
+	}
+}
+
 Function MigrateDatabaseLocal {
 	exec{
 		& $aliaSql $databaseAction $databaseServer $databaseName $databaseScripts
@@ -76,6 +90,7 @@ Function PrivateBuild{
 	Compile
 	Test
 	MigrateDatabaseLocal
+	IntegrationTests
 }
 
 Function CIBuild{
