@@ -59,13 +59,28 @@ Function Test{
 	}
 }
 
-Function MigrateDatabase {
+Function MigrateDatabaseLocal {
 	exec{
 		& $aliaSql $databaseAction $databaseServer $databaseName $databaseScripts
 	}
 }
 
-Init
-Compile
-Test
-MigrateDatabase
+Function MigrateDatabaseRemote{
+	exec {
+		& $aliaSql $databaseAction $databaseServer $databaseName $databaseScripts $env:DatabaseUser $env:DatabasePassword
+	}
+}
+
+Function PrivateBuild{
+	Init
+	Compile
+	Test
+	MigrateDatabaseLocal
+}
+
+Function CIBuild{
+	Init
+	Compile
+	Test
+	MigrateDatabaseRemote
+}

@@ -59,7 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Database.nuspec" />
+    <None Include="DatabaseARM.json" />
     <None Include="packages.config" />
+    <None Include="UpdateAzureSQL.ps1" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
