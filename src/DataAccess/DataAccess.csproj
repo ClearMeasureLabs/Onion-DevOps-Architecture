@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>ClearMeasure.OnionDevOpsArchitecture.DataAccess</AssemblyName>
+    <RootNamespace>ClearMeasure.OnionDevOpsArchitecture.DataAccess</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.ValueGeneration;
 
-namespace DataAccess.Mappings
+namespace ClearMeasure.OnionDevOpsArchitecture.DataAccess.Mappings
 {
     public class ExpenseReportMap : IEntityFrameworkMapping
     {

@@ -1,14 +1,9 @@
-﻿using System;
-using System.ComponentModel;
-using ClearMeasure.OnionDevOpsArchitecture.Core.Model;
+﻿using ClearMeasure.OnionDevOpsArchitecture.Core.Model;
 using Core.Model;
-using DataAccess.Mappings;
-using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using Shouldly;
-using IContainer = StructureMap.IContainer;
 
-namespace IntegrationTests.DataAccess.Mappings
+namespace ClearMeasure.OnionDevOpsArchitecture.IntegrationTests.DataAccess.Mappings
 {
     public class ExpenseReportMappingTester
     {
@@ -24,14 +19,14 @@ namespace IntegrationTests.DataAccess.Mappings
                 Status = ExpenseReportStatus.Cancelled
             };
 
-            using (DataContext context = new StubbedDataContextFactory().GetContext())
+            using (var context = new StubbedDataContextFactory().GetContext())
             {
                 context.Add(report);
                 context.SaveChanges();
             }
 
             ExpenseReport rehydratedExpenseReport;
-            using (DataContext context = new StubbedDataContextFactory().GetContext())
+            using (var context = new StubbedDataContextFactory().GetContext())
             {
                 rehydratedExpenseReport = context.Find<ExpenseReport>(report.Id);
             }
@@ -40,7 +35,6 @@ namespace IntegrationTests.DataAccess.Mappings
             rehydratedExpenseReport.Description.ShouldBe(report.Description);
             rehydratedExpenseReport.Number.ShouldBe(report.Number);
             rehydratedExpenseReport.Status.ShouldBe(report.Status);
-
         }
     }
 }

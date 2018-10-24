@@ -3,7 +3,7 @@ using System.Data;
 using System.Data.Common;
 using Microsoft.EntityFrameworkCore;
 
-namespace IntegrationTests
+namespace ClearMeasure.OnionDevOpsArchitecture.IntegrationTests
 {
     public class SqlExecuter
     {

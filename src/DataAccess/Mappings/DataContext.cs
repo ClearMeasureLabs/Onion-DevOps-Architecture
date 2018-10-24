@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
-namespace DataAccess.Mappings
+namespace ClearMeasure.OnionDevOpsArchitecture.DataAccess.Mappings
 {
     public class DataContext : DbContext
     {

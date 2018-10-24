@@ -1,9 +1,9 @@
 ﻿using ClearMeasure.OnionDevOpsArchitecture.Core.Model;
-using DataAccess;
-using DataAccess.Mappings;
+using ClearMeasure.OnionDevOpsArchitecture.DataAccess;
+using ClearMeasure.OnionDevOpsArchitecture.DataAccess.Mappings;
 using StructureMap;
 
-namespace IntegrationTests
+namespace ClearMeasure.OnionDevOpsArchitecture.IntegrationTests
 {
     public class StructureMapRegistry : Registry
     {

@@ -4,7 +4,17 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <AssemblyName>ClearMeasure.OnionDevOpsArchitecture.IntegrationTests</AssemblyName>
+
+    <RootNamespace>ClearMeasure.OnionDevOpsArchitecture.IntegrationTests</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="..\ConnectionStrings.config" Link="ConnectionStrings.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />

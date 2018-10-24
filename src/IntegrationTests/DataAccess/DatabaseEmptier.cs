@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
-namespace IntegrationTests.DataAccess
+namespace ClearMeasure.OnionDevOpsArchitecture.IntegrationTests.DataAccess
 {
-    public class DatabaseEmptier
+    public sealed class DatabaseEmptier
     {
         private static readonly string[] _ignoredTables = new[] { "[dbo].[sysdiagrams]", "[dbo].[usd_AppliedDatabaseScript]" };
         private static string _deleteSql;
@@ -16,7 +16,7 @@ namespace IntegrationTests.DataAccess
             public string ForeignKeyTable { get; set; }
         }
 
-        public virtual void DeleteAllData()
+        public void DeleteAllData()
         {
             if(_deleteSql == null)
             {

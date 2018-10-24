@@ -1,13 +1,13 @@
-﻿using IntegrationTests.DataAccess;
+﻿using ClearMeasure.OnionDevOpsArchitecture.IntegrationTests.DataAccess;
 using StructureMap;
 
-namespace IntegrationTests
+namespace ClearMeasure.OnionDevOpsArchitecture.IntegrationTests
 {
     public class DatabaseTester
     {
         private static bool _dependenciesRegistered;
         private static readonly object Lock = new object();
-        internal static IContainer Container = null;
+        private static IContainer _container;
 
         public void Clean()
         {
@@ -15,7 +15,7 @@ namespace IntegrationTests
             new DatabaseEmptier().DeleteAllData();
         }
 
-        public static IContainer EnsureDependenciesRegistered()
+        private static void EnsureDependenciesRegistered()
         {
             if (!_dependenciesRegistered)
             {
@@ -28,14 +28,12 @@ namespace IntegrationTests
                     }
                 }
             }
-
-            return Container;
         }
 
         private static void Initialize()
         {
             var container = new Container(new StructureMapRegistry());
-            Container = container;;
+            _container = container;
         }
     }
 }

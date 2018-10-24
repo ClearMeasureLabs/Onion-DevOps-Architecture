@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Configuration;
-using DataAccess;
-using DataAccess.Mappings;
+using ClearMeasure.OnionDevOpsArchitecture.DataAccess.Mappings;
 
-namespace IntegrationTests
+namespace ClearMeasure.OnionDevOpsArchitecture.IntegrationTests
 {
     public class StubbedDataContextFactory : IDisposable
     {
@@ -16,10 +14,7 @@ namespace IntegrationTests
             _context = new DataContext(_config);
         }
 
-        public DataConfigurationStub Config
-        {
-            get { return _config; }
-        }
+        public DataConfigurationStub Config => _config;
 
         public DataContext GetContext()
         {
@@ -28,7 +23,7 @@ namespace IntegrationTests
 
         public void Dispose()
         {
-            if (_context != null) _context.Dispose();
+            _context?.Dispose();
         }
     }
 }

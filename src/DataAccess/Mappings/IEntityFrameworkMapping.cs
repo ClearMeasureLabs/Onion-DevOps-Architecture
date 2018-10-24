@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DataAccess.Mappings
+namespace ClearMeasure.OnionDevOpsArchitecture.DataAccess.Mappings
 {
     public interface IEntityFrameworkMapping
     {
