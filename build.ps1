@@ -81,7 +81,7 @@ Function MigrateDatabaseLocal {
 
 Function MigrateDatabaseRemote{
 	$efConfig = "$source_dir\ConnectionStrings.config"
-    $injectedConnectionString = "Server=tcp:$databaseServer,1433;Initial Catalog=$databaseName;Persist Security Info=False;User ID=$databaseUser;Password=$databasePassword;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+    $injectedConnectionString = "Server=tcp:$databaseServer,1433;Initial Catalog=$databaseName;Persist Security Info=False;User ID=$env:DatabaseUser;Password=$env:DatabasePassword;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
     write-host "Using connection string: $injectedConnectionString"
     if ( Test-Path "$efConfig" ) {
         poke-xml $efConfig "//add[@name='Database']/@connectionString" $injectedConnectionString
