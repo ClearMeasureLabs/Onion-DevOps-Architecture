@@ -12,8 +12,8 @@ $build_dir = "$base_dir\build"
 $test_dir = "$build_dir\test"
 
 $aliaSql = "$source_dir\Database\scripts\AliaSql.exe"
-$migrationAction = $env:MigrationAction
-if ([string]::IsNullOrEmpty($migrationAction)) { $migrationAction = "Rebuild"}
+$databaseAction = $env:DatabaseAction
+if ([string]::IsNullOrEmpty($databaseAction)) { $databaseAction = "Rebuild"}
 $databaseName = $env:DatabaseName
 if ([string]::IsNullOrEmpty($databaseName)) { $databaseName = $projectName}
 $databaseServer = $env:DatabaseServer
@@ -61,7 +61,7 @@ Function Test{
 
 Function MigrateDatabase {
 	exec{
-		& $aliaSql $migrationAction $databaseServer $databaseName $databaseScripts
+		& $aliaSql $databaseAction $databaseServer $databaseName $databaseScripts
 	}
 }
 
