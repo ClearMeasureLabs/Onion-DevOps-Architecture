@@ -10,6 +10,15 @@ $verbosity = "n"
 
 $build_dir = "$base_dir\build"
 $test_dir = "$build_dir\test"
+
+$aliaSql = "$source_dir\Database\scripts\AliaSql.exe"
+$migrationAction = $env:MigrationAction
+if ([string]::IsNullOrEmpty($migrationAction)) { $migrationAction = "Rebuild"}
+$databaseName = $env:DatabaseName
+if ([string]::IsNullOrEmpty($databaseName)) { $databaseName = $projectName}
+$databaseServer = $env:DatabaseServer
+if ([string]::IsNullOrEmpty($databaseServer)) { $databaseServer = "localhost\SQL2017"}
+$databaseScripts = "$source_dir\Database\scripts"
     
 if ([string]::IsNullOrEmpty($version)) { $version = "1.0.1"}
 if ([string]::IsNullOrEmpty($projectConfig)) {$projectConfig = "Release"}
@@ -50,6 +59,13 @@ Function Test{
 	}
 }
 
+Function MigrateDatabase {
+	exec{
+		& $aliaSql $migrationAction $databaseServer $databaseName $databaseScripts
+	}
+}
+
 Init
 Compile
 Test
+MigrateDatabase
