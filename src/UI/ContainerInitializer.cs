@@ -1,19 +1,13 @@
-﻿using ClearMeasure.OnionDevOpsArchitecture.IntegrationTests.DataAccess;
+﻿using ClearMeasure.OnionDevOpsArchitecture.UI;
 using StructureMap;
 
-namespace ClearMeasure.OnionDevOpsArchitecture.IntegrationTests
+namespace ClearMeasure.OnionDevOpsArchitecture.AppStartup
 {
-    public class DatabaseTester
+    public class ContainerInitializer
     {
         private static bool _dependenciesRegistered;
         private static readonly object Lock = new object();
         private static IContainer _container;
-
-        public void Clean()
-        {
-            EnsureDependenciesRegistered();
-            new DatabaseEmptier().DeleteAllData();
-        }
 
         private static void EnsureDependenciesRegistered()
         {
