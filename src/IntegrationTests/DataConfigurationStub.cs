@@ -1,4 +1,5 @@
 ﻿using System.Configuration;
+using ClearMeasure.OnionDevOpsArchitecture.Core;
 using ClearMeasure.OnionDevOpsArchitecture.DataAccess;
 
 namespace ClearMeasure.OnionDevOpsArchitecture.IntegrationTests

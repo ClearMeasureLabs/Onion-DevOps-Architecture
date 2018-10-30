@@ -1,12 +1,9 @@
 ﻿using System;
-using ClearMeasure.OnionDevOpsArchitecture.AppStartup;
-using ClearMeasure.OnionDevOpsArchitecture.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using StructureMap;
 
 namespace ClearMeasure.OnionDevOpsArchitecture.UI
 {
@@ -23,15 +20,8 @@ namespace ClearMeasure.OnionDevOpsArchitecture.UI
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            var container = new ContainerInitializer().GetContainer();
-            container.Populate(services);
-            foreach (var task in container.GetAllInstances<IStartupTask>())
-            {
-                task.Run();
-            }
-            
-
-            return container.GetInstance<IServiceProvider>();
+            var provider = new Core.AppStartup.Startup().Start(services);
+            return provider;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

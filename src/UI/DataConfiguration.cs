@@ -1,6 +1,4 @@
-﻿using System.Configuration;
-using ClearMeasure.OnionDevOpsArchitecture.DataAccess;
-using Microsoft.IdentityModel.Protocols;
+﻿using ClearMeasure.OnionDevOpsArchitecture.Core;
 
 namespace ClearMeasure.OnionDevOpsArchitecture.UI
 {

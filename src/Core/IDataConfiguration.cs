@@ -1,4 +1,4 @@
-﻿namespace ClearMeasure.OnionDevOpsArchitecture.DataAccess
+﻿namespace ClearMeasure.OnionDevOpsArchitecture.Core
 {
     public interface IDataConfiguration
     {

@@ -22,8 +22,13 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{BE3C1210-3FB8-492E-A436-79A9B4A63B68}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{44877005-31A0-49E6-8659-AEDF2AD942ED}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0896AC4E-9343-45CA-BA58-B74977C2DAF3} = {0896AC4E-9343-45CA-BA58-B74977C2DAF3}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI", "UI\UI.csproj", "{0896AC4E-9343-45CA-BA58-B74977C2DAF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.AppStartup", "Core.AppStartup\Core.AppStartup.csproj", "{59114AC8-A32F-4C88-8E33-E9FA3115ED49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +60,10 @@ Global
 		{0896AC4E-9343-45CA-BA58-B74977C2DAF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0896AC4E-9343-45CA-BA58-B74977C2DAF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0896AC4E-9343-45CA-BA58-B74977C2DAF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59114AC8-A32F-4C88-8E33-E9FA3115ED49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59114AC8-A32F-4C88-8E33-E9FA3115ED49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59114AC8-A32F-4C88-8E33-E9FA3115ED49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59114AC8-A32F-4C88-8E33-E9FA3115ED49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

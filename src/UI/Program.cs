@@ -1,5 +1,4 @@
-﻿using ClearMeasure.OnionDevOpsArchitecture.AppStartup;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
 namespace ClearMeasure.OnionDevOpsArchitecture.UI

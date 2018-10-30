@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ClearMeasure.OnionDevOpsArchitecture.Core;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace ClearMeasure.OnionDevOpsArchitecture.DataAccess.Mappings

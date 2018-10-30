@@ -1,8 +1,9 @@
-﻿using ClearMeasure.OnionDevOpsArchitecture.Core;
-using ClearMeasure.OnionDevOpsArchitecture.Core.Model;
+﻿using ClearMeasure.OnionDevOpsArchitecture.Core.Model;
+using ClearMeasure.OnionDevOpsArchitecture.DataAccess;
+using ClearMeasure.OnionDevOpsArchitecture.DataAccess.Mappings;
 using StructureMap;
 
-namespace ClearMeasure.OnionDevOpsArchitecture.UI
+namespace ClearMeasure.OnionDevOpsArchitecture.Core.AppStartup
 {
     public class StructureMapRegistry : Registry
     {
@@ -10,9 +11,10 @@ namespace ClearMeasure.OnionDevOpsArchitecture.UI
         {
             Scan(scanner =>
             {
+                scanner.TheCallingAssembly();
                 scanner.AssemblyContainingType<ExpenseReport>();
-                scanner.Assembly("ClearMeasure.OnionDevOpsArchitecture.DataAccess");
-                scanner.AssemblyContainingType<Startup>();
+                scanner.AssemblyContainingType<DataContext>();
+                scanner.Assembly("ClearMeasure.OnionDevOpsArchitecture.UI");
                 scanner.WithDefaultConventions();
                 scanner.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>));
             });

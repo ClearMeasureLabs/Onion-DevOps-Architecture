@@ -1,7 +1,6 @@
-﻿using ClearMeasure.OnionDevOpsArchitecture.UI;
-using StructureMap;
+﻿using StructureMap;
 
-namespace ClearMeasure.OnionDevOpsArchitecture.AppStartup
+namespace ClearMeasure.OnionDevOpsArchitecture.Core.AppStartup
 {
     public class ContainerInitializer
     {
