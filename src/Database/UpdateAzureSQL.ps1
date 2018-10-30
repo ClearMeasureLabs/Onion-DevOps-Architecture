@@ -7,6 +7,9 @@ $DatabaseAction = $env:DatabaseAction
 $DatabaseUser = $env:DatabaseUser
 $DatabasePassword = $env:DatabasePassword
 
+Write-Output "Recursive directory listing for diagnostics"
+Get-ChildItem -Recurse
+
 Write-Host "Executing & .\scripts\AliaSQL.exe $DatabaseAction $databaseServer $databaseName .\scripts $databaseUser $databasePassword"
 
 & .\scripts\AliaSQL.exe $DatabaseAction $DatabaseServer $DatabaseName .\scripts $DatabaseUser $DatabasePassword
