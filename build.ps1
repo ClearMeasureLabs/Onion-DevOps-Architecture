@@ -5,6 +5,8 @@ $base_dir = resolve-path .\
 $source_dir = "$base_dir\src"
 $unitTestProjectPath = "$source_dir\UnitTests"
 $integrationTestProjectPath = "$source_dir\IntegrationTests"
+$uiProjectPath = "$source_dir\UI"
+$databaseProjectPath = "$source_dir\Database"
 $projectConfig = $env:BuildConfiguration
 $version = $env:Version
 $verbosity = "m"
@@ -21,7 +23,7 @@ $databaseServer = $env:DatabaseServer
 if ([string]::IsNullOrEmpty($databaseServer)) { $databaseServer = "localhost\SQL2017"}
 $databaseScripts = "$source_dir\Database\scripts"
     
-if ([string]::IsNullOrEmpty($version)) { $version = "1.0.1"}
+if ([string]::IsNullOrEmpty($version)) { $version = "9.9.9"}
 if ([string]::IsNullOrEmpty($projectConfig)) {$projectConfig = "Release"}
  
 Function Init {
@@ -93,6 +95,19 @@ Function MigrateDatabaseRemote{
 	}
 }
 
+Function Pack{
+	Write-Output "Packaging nuget packages"
+	exec{
+		& .\tools\octopack\Octo.exe pack --id "$projectName.UI" --version $version --basePath $uiProjectPath --outFolder $build_dir
+	}
+	exec{
+		& .\tools\octopack\Octo.exe pack --id "$projectName.Database" --version $version --basePath $databaseProjectPath --outFolder $build_dir
+	}
+	exec{
+		& .\tools\octopack\Octo.exe pack --id "$projectName.IntegrationTests" --version $version --basePath $integrationTestProjectPath --outFolder $build_dir
+	}
+}
+
 Function PrivateBuild{
 	Init
 	Compile
@@ -107,4 +122,5 @@ Function CIBuild{
 	Compile
 	UnitTests
 	IntegrationTest
+	Pack
 }
