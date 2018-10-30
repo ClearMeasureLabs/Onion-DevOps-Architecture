@@ -68,7 +68,7 @@ namespace Database
         /// <returns></returns>
         private static string GetDatabaseName()
         {
-            var databasename = ConfigurationManager.AppSettings["DatabaseName"];
+            var databasename = "OnionDevOpsArchitecture";// ConfigurationManager.AppSettings["DatabaseName"];
 
             if (string.IsNullOrEmpty(databasename))
             {
@@ -81,11 +81,11 @@ namespace Database
 
         private static string GetDatabaseServer()
         {
-            var servername = ConfigurationManager.AppSettings["DatabaseServer"];
+            var servername = @"localhost\sql2017";// ConfigurationManager.AppSettings["DatabaseServer"];
 
             if (string.IsNullOrEmpty(servername))
             {
-                servername = ".\\sqlexpress";
+                servername = @".\\sqlexpress";
             }
             return servername;
         }

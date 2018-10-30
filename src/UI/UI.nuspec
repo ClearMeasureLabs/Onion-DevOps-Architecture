@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <files>
-    <file src="scripts\**" target="scripts" />
+    <file src="bin\*.*" target="bin" />
   </files>
 </package>
