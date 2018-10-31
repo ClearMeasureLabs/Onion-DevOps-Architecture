@@ -1,4 +1,5 @@
-﻿using ClearMeasure.OnionDevOpsArchitecture.Core;
+﻿using System.Configuration;
+using ClearMeasure.OnionDevOpsArchitecture.Core;
 
 namespace ClearMeasure.OnionDevOpsArchitecture.UI
 {
@@ -6,7 +7,7 @@ namespace ClearMeasure.OnionDevOpsArchitecture.UI
     {
         public string GetConnectionString()
         {
-            return @"server=localhost\SQL2017;database=OnionDevOpsArchitecture;Integrated Security=true;";
+            return ConfigurationManager.AppSettings["ConnectionString"];
         }
     }
 }
