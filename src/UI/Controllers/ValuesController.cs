@@ -23,7 +23,7 @@ namespace ClearMeasure.OnionDevOpsArchitecture.UI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<ExpenseReport>> Get()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["Database"].ConnectionString;// "foo";
+            string connectionString = ConfigurationManager.AppSettings["ConnectionString"];
             var command = new ListExpenseReportsCommand();
             ExpenseReport[] reports = _bus.Send(command);
             reports[0].Description = connectionString;
