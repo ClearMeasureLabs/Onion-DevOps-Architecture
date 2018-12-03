@@ -20,9 +20,13 @@ if ([string]::IsNullOrEmpty($databaseAction)) { $databaseAction = "Rebuild"}
 $databaseName = $env:DatabaseName
 if ([string]::IsNullOrEmpty($databaseName)) { $databaseName = $projectName}
 $databaseServer = $env:DatabaseServer
-if ([string]::IsNullOrEmpty($databaseServer)) { $databaseServer = "localhost\SQL2017"}
+if ([string]::IsNullOrEmpty($databaseServer)) { $databaseServer = "."}
 $databaseScripts = "$source_dir\Database\scripts"
-    
+
+# databases must be applied in this order due to cross-database references.
+$orderToApplyDatabases = "OnionDevOpsArchitecture"##,"Database2","Database3","etc"
+
+
 if ([string]::IsNullOrEmpty($version)) { $version = "9.9.9"}
 if ([string]::IsNullOrEmpty($projectConfig)) {$projectConfig = "Release"}
  
@@ -75,25 +79,35 @@ Function IntegrationTest{
 	}
 }
 
-Function MigrateDatabaseLocal {
-	exec{
-		& $aliaSql $databaseAction $databaseServer $databaseName $databaseScripts
-	}
-}
-
-Function MigrateDatabaseRemote{
-	$appConfig = "$integrationTestProjectPath\app.config"
-    $injectedConnectionString = "Server=tcp:$databaseServer,1433;Initial Catalog=$databaseName;Persist Security Info=False;User ID=$env:DatabaseUser;Password=$env:DatabasePassword;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
-    
-	write-host "Using connection string: $injectedConnectionString"
-    if ( Test-Path "$appConfig" ) {
-        poke-xml $appConfig "//add[@key='ConnectionString']/@value" $injectedConnectionString
+Function ApplyLocalDb {
+    $orderToApplyDatabases | ForEach-Object {
+        Write-Host "Applying database: $_"
+        ApplyLocalDatabase($_)
     }
-
-	exec {
-		& $aliaSql $databaseAction $databaseServer $databaseName $databaseScripts $env:DatabaseUser $env:DatabasePassword
-	}
 }
+
+Function DropLocalDb {
+    $orderToApplyDatabases | ForEach-Object {
+        Write-Host "Dropping database: $_"
+        SqlCmd -S "$databaseServer" -Q "Drop Database [$_]"
+    }
+}
+
+Function BuildDatabaseArtifact($databaseServer, $dbName) {
+    $validatedProject = Invoke-DatabaseBuild "$base_dir\src\Database.$dbName\Database.$dbName.sqlproj" -TemporaryDatabase $databaseServer
+    $buildArtifact = New-DatabaseBuildArtifact $validatedProject -PackageId "Database.$dbName" -PackageVersion $version
+    Export-DatabaseBuildArtifact $buildArtifact -Path $build_dir -Force # "-Force" because msbuild creates an incomplete version of this file with the same name and without the nuspec file that causes that, msbuild crashes.
+    return $buildArtifact
+}
+
+Function ApplyLocalDatabase($dbName) {
+    $targetDb = New-DatabaseConnection -ServerInstance "$databaseServer" -Database $dbName
+    $buildArtifact = BuildDatabaseArtifact $targetDb $dbName
+
+    $dbRelease = New-DatabaseReleaseArtifact -Source $buildArtifact -Target $targetDb
+    Use-DatabaseReleaseArtifact $dbRelease -DeployTo $targetDb
+}
+
 
 Function Pack{
 	Write-Output "Packaging nuget packages"
@@ -112,7 +126,7 @@ Function PrivateBuild{
 	Init
 	Compile
 	UnitTests
-	MigrateDatabaseLocal
+	ApplyLocalDb
 	IntegrationTest
 }
 
@@ -123,4 +137,13 @@ Function CIBuild{
 	UnitTests
 	IntegrationTest
 	Pack
+}
+
+Function FreshDB {
+	DropLocalDb
+	ApplyLocalDb
+}
+
+Function ApplyDB {
+	ApplyLocalDb
 }
