@@ -1,4 +1,8 @@
-[![Build status](https://clearmeasurelabs.visualstudio.com/Onion-DevOps-Architecture/_apis/build/status/Onion-DevOps-Architecture-ASP.NET%20Core-CI)](https://clearmeasurelabs.visualstudio.com/Onion-DevOps-Architecture/_build/latest?definitionId=7)
+[![Build status](https://dev.azure.com/clearmeasurelabs/DevOps-Architecture-Pro-Sample/_apis/build/status/Onion-DevOps-Architecture-CI)](https://dev.azure.com/clearmeasurelabs/DevOps-Architecture-Pro-Sample/_build/latest?definitionId=7)
+[![TDD status](https://dev.azure.com/clearmeasurelabs/DevOps-Architecture-Pro-Sample/_release?view=all&definitionId=1)](https://vsrm.dev.azure.com/clearmeasurelabs/_apis/public/Release/badge/801ebfd3-bd0a-4c92-8080-1b73805b58d1/1/1)
+[![UAT status](https://dev.azure.com/clearmeasurelabs/DevOps-Architecture-Pro-Sample/_release?view=all&definitionId=1)](https://vsrm.dev.azure.com/clearmeasurelabs/_apis/public/Release/badge/801ebfd3-bd0a-4c92-8080-1b73805b58d1/1/2)
+[![Prod status](https://dev.azure.com/clearmeasurelabs/DevOps-Architecture-Pro-Sample/_release?view=all&definitionId=1)](https://vsrm.dev.azure.com/clearmeasurelabs/_apis/public/Release/badge/801ebfd3-bd0a-4c92-8080-1b73805b58d1/1/3)
+
 # Introduction 
 Demonstrates how to set up .Net Core for DevOps to Azure, with professional patterns included:
  * Private build
