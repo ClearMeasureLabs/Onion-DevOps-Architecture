@@ -14,7 +14,7 @@ namespace ClearMeasure.OnionDevOpsArchitecture.Core.AppStartup
                 scanner.TheCallingAssembly();
                 scanner.AssemblyContainingType<ExpenseReport>();
                 scanner.AssemblyContainingType<DataContext>();
-                scanner.Assembly("ClearMeasure.OnionDevOpsArchitecture.UI");
+                //scanner.Assembly("ClearMeasure.OnionDevOpsArchitecture.UI");
                 scanner.WithDefaultConventions();
                 scanner.ConnectImplementationsToTypesClosing(typeof(IRequestHandler<,>));
             });
