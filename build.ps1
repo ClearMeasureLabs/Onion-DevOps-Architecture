@@ -1,5 +1,5 @@
 . .\BuildFunctions.ps1
-
+$startTime = 
 $projectName = "OnionDevOpsArchitecture"
 $base_dir = resolve-path .\
 $source_dir = "$base_dir\src"
@@ -109,11 +109,14 @@ Function Pack{
 }
 
 Function PrivateBuild{
+	$sw = [Diagnostics.Stopwatch]::StartNew()
 	Init
 	Compile
 	UnitTests
 	MigrateDatabaseLocal
 	IntegrationTest
+	$sw.Stop()
+	write-host "Build time: " $sw.Elapsed.ToString()
 }
 
 Function CIBuild{
