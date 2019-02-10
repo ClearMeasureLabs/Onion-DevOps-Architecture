@@ -15,7 +15,6 @@ namespace ClearMeasure.OnionDevOpsArchitecture.Core.AppStartup
                 task.Run();
             }
             
-
             return container.GetInstance<IServiceProvider>();
         }
     }

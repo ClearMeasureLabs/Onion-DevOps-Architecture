@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using ClearMeasure.OnionDevOpsArchitecture.Core;
+
 
 namespace UIRazorComponents.Server
 {
@@ -15,6 +17,8 @@ namespace UIRazorComponents.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            IServiceProvider provider = new ClearMeasure.OnionDevOpsArchitecture.Core.AppStartup.Startup().Start(services);
+            Bus.GlobalInstanceFactory = provider.GetService<SingleInstanceFactory>();
             services.AddRazorComponents<App.Startup>();
         }
 

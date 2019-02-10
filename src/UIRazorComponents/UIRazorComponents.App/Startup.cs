@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using UIRazorComponents.App.Services;
+using ClearMeasure.OnionDevOpsArchitecture.Core;
 
 namespace UIRazorComponents.App
 {
@@ -10,6 +11,7 @@ namespace UIRazorComponents.App
         {
             // Example of a data service
             services.AddSingleton<WeatherForecastService>();
+            services.AddTransient<Bus>();
         }
 
         public void Configure(IComponentsApplicationBuilder app)

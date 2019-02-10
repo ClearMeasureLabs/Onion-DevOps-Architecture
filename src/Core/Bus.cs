@@ -9,10 +9,12 @@ namespace ClearMeasure.OnionDevOpsArchitecture.Core
 
     public class Bus
     {
+        public static SingleInstanceFactory GlobalInstanceFactory;
         private readonly SingleInstanceFactory _singleInstanceFactory;
 
         public Bus()
         {
+            _singleInstanceFactory = GlobalInstanceFactory;
         }
 
         public Bus(SingleInstanceFactory singleInstanceFactory)

@@ -1,6 +1,10 @@
 ﻿@page "/fetchdata"
 @using UIRazorComponents.App.Services
+@using ClearMeasure.OnionDevOpsArchitecture.Core
+@using ClearMeasure.OnionDevOpsArchitecture.Core.Features.BrowseExpenseReports
+@using ClearMeasure.OnionDevOpsArchitecture.Core.Model
 @inject WeatherForecastService ForecastService
+@inject Bus Bus;
 
 <h1>Weather forecast</h1>
 
@@ -35,11 +39,45 @@ else
     </table>
 }
 
+
+@if (reports == null)
+{
+    <p><em>Loading reports...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var report in reports)
+            {
+                <tr>
+                    <td>@report.Number</td>
+                    <td>@report.Title</td>
+                    <td>@report.Description</td>
+                    <td>@report.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
 @functions {
     WeatherForecast[] forecasts;
+    ExpenseReport[] reports;
 
     protected override async Task OnInitAsync()
     {
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        var command = new ListExpenseReportsCommand();
+        reports = await Task.FromResult<ExpenseReport[]>(Bus.Send(command));
     }
 }
