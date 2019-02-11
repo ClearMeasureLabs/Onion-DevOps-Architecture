@@ -9,7 +9,7 @@ $uiProjectPath = "$source_dir\UIRazorComponents\UIRazorComponents.Server"
 $databaseProjectPath = "$source_dir\Database"
 $projectConfig = $env:BuildConfiguration
 $version = $env:Version
-$verbosity = "m"
+$verbosity = "d"
 
 $build_dir = "$base_dir\build"
 $test_dir = "$build_dir\test"
