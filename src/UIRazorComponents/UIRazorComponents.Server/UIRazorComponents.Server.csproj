@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Server" Version="3.0.0-preview-19075-0444" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.6.0-preview.19073.11" />
   </ItemGroup>
 
 </Project>

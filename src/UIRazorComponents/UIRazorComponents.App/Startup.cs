@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using UIRazorComponents.App.Services;
 using ClearMeasure.OnionDevOpsArchitecture.Core;
+using ClearMeasure.OnionDevOpsArchitecture.Core.Model;
+using ClearMeasure.OnionDevOpsArchitecture.Core.Features.BrowseExpenseReports;
+using System.Diagnostics;
 
 namespace UIRazorComponents.App
 {
@@ -10,13 +12,13 @@ namespace UIRazorComponents.App
         public void ConfigureServices(IServiceCollection services)
         {
             // Example of a data service
-            services.AddSingleton<WeatherForecastService>();
-            services.AddTransient<Bus>();
         }
 
         public void Configure(IComponentsApplicationBuilder app)
         {
             app.AddComponent<App>("app");
+            ExpenseReport[] reports = app.Services.GetService<Bus>().Send(new ListExpenseReportsCommand());
+            Debug.WriteLine(reports[0].Title);
         }
     }
 }
