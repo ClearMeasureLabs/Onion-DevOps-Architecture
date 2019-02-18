@@ -15,6 +15,7 @@ Demonstrates how to set up .Net Core for DevOps to Azure, with professional patt
 # Getting Started
 Install SQL Express 2017 (localhost\sql2017) & Visual Studio 15.8
 Clone the repository
+Application has been upgraded for .Net Core 3 preview.
 
 # Build and Test
 Run .\build.ps1 OR click_to_build.bat
